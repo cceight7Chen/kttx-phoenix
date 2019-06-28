@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kttx.kt.phoenix.platform.mapper.user.UserMapper" >
+
+
+    <!-- 测试数据 -->
+    <select id="queryUserBasicInfo" parameterType="map" resultType="com.kttx.kt.phoenix.platform.domain.dos.UserBasicDO">
+        SELECT
+            us.id AS userId,
+            ui.department_id AS departmentId
+        FROM
+            kt_user us
+        LEFT JOIN
+            kt_user_info ui ON us.id = ui.user_id
+        WHERE
+            enterprise_id = #{enterpriseId}
+        AND user_id = #{userId}
+    </select>
+
+
+    <!-- 测试数据 -->
+    <select id="queryUserInfo" resultType="com.kttx.kt.phoenix.platform.domain.dto.UserInfoDTO">
+        SELECT
+            id AS id,
+            mobile AS mobile,
+            registerTime AS registerTime
+        FROM
+            kttx_user
+        ORDER BY
+            id
+        DESC
+            LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,55 @@
+# 端口号
+server:
+  port: 8082
+
+# redis依赖
+jedis:
+  pool:
+    host: 39.107.228.236
+    port: 6379
+    password: "@kttx002"
+    timeout: 3000
+    config:
+      maxIdle: 100
+      maxTotal: 1000
+      maxWaitMillis: 1000
+      testOnBorrow: true
+
+# mysql日志打印
+logging:
+  level:
+    com.kttx.kt.phoenix.platform.mapper: debug
+
+#mybatis配置
+mybatis:
+  config-locations : classpath:mybatis/mybatis-config.xml
+  mapper-locations : classpath:mybatis/mapper/*/*.xml
+  type-aliases-package : com.kttx.kt.phoenix.platform.mapper
+
+
+# mysql数据库
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://47.103.72.163:3306/kttx-phoenix?useSSL=false
+      username: "root"
+      password: "@Kttx20190515"
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      ###数据源的其他配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      ### 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500

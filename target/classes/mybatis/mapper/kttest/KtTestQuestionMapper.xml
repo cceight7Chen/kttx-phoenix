@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kttx.kt.phoenix.platform.mapper.kttest.KtTestQuestionMapper" >
+
+    <resultMap id="CyTestQuestionResultMap" type="com.kttx.kt.phoenix.platform.domain.dto.KtTestQuestionDTO">
+        <id property="id" column="id"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="creator" column="creator"/>
+        <result property="modifierId" column="modifier_id"/>
+        <result property="modifier" column="modifier"/>
+        <result property="testId" column="test_id"/>
+        <result property="testBatch" column="test_batch"/>
+        <result property="itemId" column="item_id"/>
+        <result property="questionNo" column="question_no"/>
+        <result property="questionType" column="question_type"/>
+        <result property="questionName" column="question_name"/>
+        <result property="questionOptions" column="question_options"/>
+        <result property="questionAnswer" column="question_answer"/>
+        <result property="questionScore" column="question_score"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+
+    <!-- 测试数据 -->
+    <select id="queryKtTestQuestionList" parameterType="com.kttx.kt.phoenix.platform.domain.query.QueryKtTestDTO" resultMap="CyTestQuestionResultMap">
+        SELECT
+            *
+        FROM
+            kt_test_question
+        WHERE 1=1
+          <if test="testQuestionId != null and testQuestionId != ''">
+            and id = #{testQuestionId}
+          </if>
+
+    </select>
+
+</mapper>
